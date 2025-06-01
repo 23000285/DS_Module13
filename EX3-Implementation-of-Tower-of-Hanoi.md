@@ -16,7 +16,7 @@ To write a C program to implement Tower of Hanoi
 5. Repeat the above steps recursively until all disks are moved from peg x to peg y.
 
 ## Program:
-```
+```C
 /*
 Program to implement Tower of Hanoi
 Developed by: VENKATANATHAN P R
