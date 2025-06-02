@@ -1,59 +1,71 @@
 # EX 1 Display operator precedence in the infix expression.
-## DATE: 25/03/2025
+## DATE: 27-03-2025
 ## AIM:
 To write a C program to find and display the priority of the operator in the given Postfix expression
 
 ## Algorithm
+1. Initialize a stack.
 
-1. Read the postfix expression as a string input.
+2. Loop through each character of the Postfix expression.
 
-2. Loop through each character of the postfix expression one by one.
+3. If the character is an operand, push it to the stack.
 
-3. For each character, check if it is an operator (i.e., not an alphanumeric character).
+4. If the character is an operator, pop two operands from the stack, apply the operator, and push the result back onto the stack.
 
-4. If it is an operator, determine its priority using the priority function.
+5. Display the precedence of the operator when it's encountered.
 
-5. Print the operator along with its priority.
-
-
+6. The program should handle multiple operators with different precedence.
 
 ## Program:
-```C
+```
 /*
 Program to find and display the priority of the operator in the given Postfix expression
-Developed by: VENKATANATHAN P R
-RegisterNumber: 212223240173
+Developed by: Vishwaraj G.
+RegisterNumber: 212223220125
 */
-
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
-
-int priority(char x) {
-    if (x == '|') return 1;
-    if (x == '&') return 2;
-    if (x == '+' || x == '-') return 3;
-    if (x == '*' || x == '/' || x == '%') return 4;
-    if (x == '^') return 5;
-    return 0;
+int precedence(char op) {
+    if(op == '+' || op == '-') {
+        return 1;
+    } else if(op == '*' || op == '/') {
+        return 2;
+    } else if(op == '^') {
+        return 3;
+    }
+    return -1; // Invalid operator
 }
-
-int main() {
-    char exp[100];
-    printf("Enter postfix expression: ");
-    scanf("%s", exp);
-
-    for (int i = 0; exp[i] != '\0'; i++) {
-        if (!isalnum(exp[i])) {  // if operator
-            printf("Operator: %c, Priority: %d\n", exp[i], priority(exp[i]));
+void evaluatePostfix(char* expression) {
+    int i = 0;
+    while (expression[i] != '\0') {
+        if (isdigit(expression[i])) {
+            // Operand, no action needed
+            i++;
+        } else if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/' || expression[i] == '^') {
+            // Operator, display its precedence
+            printf("Operator: %c, Precedence: %d\n", expression[i], precedence(expression[i]));
+            i++;
+        } else {
+            printf("Invalid character encountered.\n");
+            return;
         }
     }
+}
+int main() {
+    // Sample Postfix expression
+    char expression[] = "23*4+5^";
+    
+    printf("Postfix Expression: %s\n", expression);
+    evaluatePostfix(expression);
 
     return 0;
 }
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/53b08283-5932-4fa2-b6cb-8384790b2175)
+![image](https://github.com/user-attachments/assets/98b5b3f0-d798-4190-8fbe-b32818c06571)
+
 
 ## Result:
 Thus the C program to find and display the priority of the operator in the given Postfix expression is implemented successfully
