@@ -26,8 +26,8 @@ To write a C function to perform push and pop operations of the stack in the inf
 ```c
 /*
 Program to perform push and pop operations of the stack in the infix to postfix conversion
-Developed by: Vishwaraj G.
-RegisterNumber: 212223220125
+Developed by: VENKATANATHAN P R
+Register Number: 212223240173
 */
 
 #include <stdio.h>
